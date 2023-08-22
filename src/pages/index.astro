@@ -1,28 +1,33 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { LINKEDIN } from '../consts';
+import Default from '../layouts/DefaultLayout.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello visitor!</h1>
-			<p>Welcome to my personal website.</p>
+<Default>
+	<main class="container prose mx-auto px-4 pb-2 pt-8">
+		<p class="text-2xl">Hei,</p>
+		<p>
+			My name is <strong>Thomas Bassetto</strong>. I’m a Frenchman living in <em>Oslo, Norway</em> since 2013. I
+			currently work as a Principal Engineer at <a href="https://www.dnv.com"
+				><acronym title="Det Norske Veritas">DNV</acronym></a
+			>.
+		</p>
+		<div>
 			<p>
-				I am Frenchman living in Oslo, Norway since 2013. I currently work as a
-				Principal Engineer at <a href="https://www.dnv.com"
-					><acronym title="Det Norske Veritas">DNV</acronym></a
-				>. 
+				In my profesional career I worked on various projects and industries including a web standards based <acronym
+					title="Operating System">Operating System</acronym
+				>, a collaborative jukebox-style app music streaming platforms, admin tools for video conference systems and an
+				online marketplace.<br /><a href={LINKEDIN}>Read more on my LinkedIn profile →</a>
 			</p>
-			<p>I wouldn't be a proper software enginner without a half-assed, unfinished, website with no real blog posts. So here we are.</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</div>
+		<div>
+			<p>
+				In my spare time I run a <a href="https://lanorvege.no/">French website about living in Norway</a>, I
+				<a href="https://instagram.com/tbassetto">spend a lot of time outdoors</a> and I do my duty as a <a
+					href="https://www.assemblee-afe.fr/_bassetto_.html?type=cc"
+					>elected official representing French in Norway and Iceland</a
+				>.
+			</p>
+		</div>
+	</main>
+</Default>
