@@ -17,6 +17,7 @@ const { Content } = await post.render();
 
 <Default {...post.data}>
 	<main class="container prose mx-auto px-4 py-4">
+		<h1>{post.data.title}</h1>
 		<Content />
 	</main>
 </Default>

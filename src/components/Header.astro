@@ -3,53 +3,57 @@ import { MASTODON, RSS, SITE_TITLE, X } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header class="container mx-auto flex flex-col justify-center bg-slate-50">
-	<div class="flex flex-col items-center gap-3 py-8 align-middle">
-		<img
-			class="aspect-square w-24 rounded-full"
-			width={512}
-			height={512}
-			src="/profile_picture.jpeg"
-			alt="Picture of Thomas Bassetto, in a cross-country ski outfit"
-		/>
-		<h2 class="text-2xl font-semibold tracking-tight">
-			<a href="/">{SITE_TITLE}</a>
-		</h2>
-		<div class="flex items-center gap-2 text-gray-500">
-			<a href={MASTODON} target="_blank">
-				<span class="sr-only">Follow me on Mastodon</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" class="h-6 w-6"
-					><path
-						fill="currentColor"
-						d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-					></path></svg
-				>
-			</a>
-			<a href={X} target="_blank">
-				<span class="sr-only">Follow me on X</span>
-				<svg viewBox="0 0 22 22" aria-hidden="true" class="h-6 w-6"
-					><path
-						fill="currentColor"
-						d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-					></path></svg
-				>
-			</a>
-			<a href={RSS} target="_blank">
-				<span class="sr-only">Open the RSS feed</span>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="currentColor" class="h-6 w-6">
-					<path
-						d="M3.75 3a.75.75 0 00-.75.75v.5c0 .414.336.75.75.75H4c6.075 0 11 4.925 11 11v.25c0 .414.336.75.75.75h.5a.75.75 0 00.75-.75V16C17 8.82 11.18 3 4 3h-.25z"
-					></path>
-					<path
-						d="M3 8.75A.75.75 0 013.75 8H4a8 8 0 018 8v.25a.75.75 0 01-.75.75h-.5a.75.75 0 01-.75-.75V16a6 6 0 00-6-6h-.25A.75.75 0 013 9.25v-.5zM7 15a2 2 0 11-4 0 2 2 0 014 0z"
-					></path>
-				</svg>
-			</a>
+<header class="border-b border-b-gray-300 bg-slate-50">
+	<div class="container mx-auto flex flex-col justify-center md:flex-row md:justify-between">
+		<div class="flex flex-col items-center gap-3 py-8 md:py-4 align-middle">
+			<div class="flex flex-col md:flex-row items-center md:gap-2">
+				<img
+					class="aspect-square w-24 rounded-full md:w-8"
+					width={512}
+					height={512}
+					src="/profile_picture.jpeg"
+					alt="Picture of Thomas Bassetto, in a cross-country ski outfit"
+				/>
+				<h2 class="text-2xl font-semibold tracking-tight">
+					<a href="/">{SITE_TITLE}</a>
+				</h2>
+			</div>
+			<div class="flex items-center gap-2 text-gray-500 md:hidden">
+				<a href={MASTODON} target="_blank">
+					<span class="sr-only">Follow me on Mastodon</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" class="h-6 w-6"
+						><path
+							fill="currentColor"
+							d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
+						></path></svg
+					>
+				</a>
+				<a href={X} target="_blank">
+					<span class="sr-only">Follow me on X</span>
+					<svg viewBox="0 0 22 22" aria-hidden="true" class="h-6 w-6"
+						><path
+							fill="currentColor"
+							d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+						></path></svg
+					>
+				</a>
+				<a href={RSS} target="_blank">
+					<span class="sr-only">Open the RSS feed</span>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="currentColor" class="h-6 w-6">
+						<path
+							d="M3.75 3a.75.75 0 00-.75.75v.5c0 .414.336.75.75.75H4c6.075 0 11 4.925 11 11v.25c0 .414.336.75.75.75h.5a.75.75 0 00.75-.75V16C17 8.82 11.18 3 4 3h-.25z"
+						></path>
+						<path
+							d="M3 8.75A.75.75 0 013.75 8H4a8 8 0 018 8v.25a.75.75 0 01-.75.75h-.5a.75.75 0 01-.75-.75V16a6 6 0 00-6-6h-.25A.75.75 0 013 9.25v-.5zM7 15a2 2 0 11-4 0 2 2 0 014 0z"
+						></path>
+					</svg>
+				</a>
+			</div>
 		</div>
+		<nav class="flex justify-center gap-4">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/uses"><code>/uses</code></HeaderLink>
+		</nav>
 	</div>
-	<nav class="flex justify-center gap-4 border-b-gray-300 border-b">
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/uses">/uses</HeaderLink>
-	</nav>
 </header>

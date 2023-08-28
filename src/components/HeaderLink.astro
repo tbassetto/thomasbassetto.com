@@ -9,6 +9,6 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || (href !== '/' && pathname.startsWith(String(href)));
 ---
 
-<a href={href} class:list={['px-4 py-1 border-b-4', { 'border-b-cyan-400 font-bold': isActive, 'border-b-transparent': !isActive }]} {...props}>
+<a href={href} class:list={['mt-auto px-4 py-1 border-b-4', { 'border-b-cyan-400 font-bold': isActive, 'border-b-transparent': !isActive }]} {...props}>
 	<slot />
 </a>
