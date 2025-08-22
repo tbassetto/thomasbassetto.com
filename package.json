@@ -11,13 +11,13 @@
 		"start": "astro dev"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^4.3.2",
+		"@astrojs/mdx": "^4.3.4",
 		"@astrojs/rss": "^4.0.12",
-		"@astrojs/sitemap": "^3.4.2",
+		"@astrojs/sitemap": "^3.5.0",
 		"@tailwindcss/forms": "^0.5.10",
-		"@tailwindcss/vite": "^4.1.11",
-		"astro": "^5.12.7",
-		"tailwindcss": "^4.1.11"
+		"@tailwindcss/vite": "^4.1.12",
+		"astro": "^5.13.2",
+		"tailwindcss": "^4.1.12"
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.16",
