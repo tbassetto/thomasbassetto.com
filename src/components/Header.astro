@@ -19,7 +19,7 @@ import HeaderLink from './HeaderLink.astro';
 				</h2>
 			</div>
 			<div class="flex items-center gap-2 text-gray-500 md:hidden">
-				<a rel="me" href={MASTODON} target="_blank">
+				<a rel="me noopener noreferrer" href={MASTODON} target="_blank">
 					<span class="sr-only">Follow me on Mastodon</span>
 					<svg viewBox="0 0 16 16" aria-hidden="true" class="h-6 w-6"
 						><path
@@ -28,7 +28,7 @@ import HeaderLink from './HeaderLink.astro';
 						></path></svg
 					>
 				</a>
-				<a href={X} target="_blank">
+				<a href={X} target="_blank" rel="noopener noreferrer">
 					<span class="sr-only">Follow me on X</span>
 					<svg viewBox="0 0 22 22" aria-hidden="true" class="h-6 w-6"
 						><path
@@ -37,7 +37,7 @@ import HeaderLink from './HeaderLink.astro';
 						></path></svg
 					>
 				</a>
-				<a href={RSS} target="_blank">
+				<a href={RSS} target="_blank" rel="noopener noreferrer">
 					<span class="sr-only">Open the RSS feed</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="currentColor" class="h-6 w-6">
 						<path
