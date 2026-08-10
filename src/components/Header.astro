@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import profilePicture from '../assets/profile-picture.jpeg';
 import { MASTODON, RSS, SITE_TITLE, X } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
@@ -7,12 +9,15 @@ import HeaderLink from './HeaderLink.astro';
 	<div class="container mx-auto flex flex-col justify-center md:flex-row md:justify-between">
 		<div class="flex flex-col items-center gap-3 py-8 align-middle md:py-4">
 			<div class="flex flex-col items-center md:flex-row md:gap-2">
-				<img
+				<Image
 					class="aspect-square w-24 rounded-full md:w-8"
-					width={512}
-					height={512}
-					src="/profile_picture.jpeg"
+					layout="constrained"
+					width={96}
+					height={96}
+					src={profilePicture}
 					alt="Picture of Thomas Bassetto, in a cross-country ski outfit"
+					loading="eager"
+					fetchpriority="high"
 				/>
 				<h2 class="text-2xl font-semibold tracking-tight">
 					<a href="/">{SITE_TITLE}</a>

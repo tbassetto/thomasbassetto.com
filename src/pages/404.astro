@@ -1,0 +1,12 @@
+---
+import { SITE_TITLE } from '../consts';
+import Default from '../layouts/DefaultLayout.astro';
+---
+
+<Default title={`Page not found | ${SITE_TITLE}`} description="The requested page could not be found.">
+	<main class="prose container mx-auto px-4 pt-8 pb-2">
+		<h1>Page not found</h1>
+		<p>The page you’re looking for doesn’t exist.</p>
+		<p><a href="/">Return home →</a></p>
+	</main>
+</Default>
