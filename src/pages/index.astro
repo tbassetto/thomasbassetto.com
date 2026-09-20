@@ -1,30 +1,214 @@
 ---
-import { LINKEDIN } from '../consts';
-import Default from '../layouts/DefaultLayout.astro';
+import { Image } from 'astro:assets';
+
+import PhotoGrid from '../components/PhotoGrid.astro';
+import ocrMonkeyBars from '../assets/ocr/20880_20260704_103045_737936797_original.jpg';
+import ocrFireRun from '../assets/ocr/20880_20260704_152205_738003027_original.jpg';
+import ocrRopeClimb from '../assets/ocr/IMG_6969.jpg';
+import profilePicture from '../assets/profile-picture.jpeg';
+import {
+	GITHUB,
+	FRENCH_TECH_OSLO,
+	INSTAGRAM,
+	LANORVEGE,
+	LINKEDIN,
+	MASTODON,
+	PUBLIC_SERVICE,
+	SITE_DESCRIPTION,
+	SITE_TITLE,
+} from '../consts';
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+
+const year = new Date().getFullYear();
+const ocrPhotos = [
+	{
+		src: ocrFireRun,
+		alt: 'Thomas running through an obstacle course race',
+		caption: 'Race day: running, fire and full commitment.',
+	},
+	{
+		src: ocrMonkeyBars,
+		alt: 'Thomas crossing monkey bars during an obstacle course race',
+		caption: 'A long way from the keyboard.',
+	},
+	{
+		src: ocrRopeClimb,
+		alt: 'Thomas climbing a rope during an obstacle course race',
+		caption: 'Grip strength, tested properly.',
+	},
+];
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: SITE_TITLE,
+	url: 'https://thomasbassetto.com',
+	jobTitle: 'Principal Engineer',
+	homeLocation: {
+		'@type': 'Place',
+		name: 'Oslo, Norway',
+	},
+	knowsAbout: [
+		'Software engineering',
+		'Frontend architecture',
+		'Design systems',
+		'Obstacle course racing',
+		'French-Norwegian community',
+	],
+	sameAs: [LINKEDIN, GITHUB, INSTAGRAM, MASTODON, PUBLIC_SERVICE, FRENCH_TECH_OSLO, LANORVEGE],
+};
+
 ---
 
-<Default>
-	<main class="prose container mx-auto px-4 pt-8 pb-2">
-		<h1 class="text-2xl font-normal">Hei,</h1>
-		<p>
-			My name is <strong>Thomas Bassetto</strong>. I’m a Frenchman living in <em>Oslo, Norway</em> since 2013. I currently
-			work as a Principal Engineer at <a href="https://www.dnv.com"><acronym title="Det Norske Veritas">DNV</acronym></a
-			>.
-		</p>
-		<p>
-			In my professional career I worked on various projects and industries including a web standards based <acronym
-				title="Operating System">Operating System</acronym
-			>, a collaborative jukebox-style app for music streaming platforms, admin tools for video conference systems and
-			an online marketplace.<br /><a href={LINKEDIN}>Read more on my LinkedIn profile →</a>
-		</p>
-		<p>
-			In my spare time I run a <a href="https://lanorvege.no" hreflang="fr">French website about living in Norway</a>, I
-			{' '}
-			<a href="https://instagram.com/tbassetto">spend a lot of time outdoors</a> and I do my duty as a <a
-				href="https://www.assemblee-afe.fr/_bassetto_.html?type=cc"
-				hreflang="fr">elected official representing French people in Norway and Iceland</a
-			>.
-		</p>
-		<p>I don’t have a newsletter.</p>
+<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION} jsonLd={jsonLd}>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+	<header class="site-header wrap">
+		<a class="brand" href="#top">Thomas Bassetto</a>
+		<nav aria-label="Main navigation">
+			<a href="#engineering">Engineering</a>
+			<a href="#ocr">Racing</a>
+			<a href="#community">Community</a>
+		</nav>
+		<button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false">
+			<svg class="theme-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+				<g class="theme-icon-moon">
+					<path d="M20 15.3A8.7 8.7 0 0 1 8.7 4a8.7 8.7 0 1 0 11.3 11.3Z" />
+				</g>
+				<g class="theme-icon-sun">
+					<circle cx="12" cy="12" r="3.5" />
+					<path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+				</g>
+			</svg>
+			<span data-theme-label>Night</span>
+		</button>
+	</header>
+
+	<main id="main-content" class="wrap">
+		<section id="top" class="hero" aria-labelledby="page-title">
+			<div class="hero-copy">
+				<h1 id="page-title">Thomas<br />Bassetto</h1>
+				<p class="lead">
+					French by birth, Norwegian by naturalization. I’m a Principal Engineer connecting technology, community and
+					life in Norway—and an obstacle course racing competitor when I’m not behind a screen.
+				</p>
+				<div class="hero-actions">
+					<a class="button primary" href="#engineering">See my engineering focus</a>
+					<a class="button" href="#contact">Get in touch</a>
+				</div>
+			</div>
+			<figure class="hero-portrait">
+				<Image src={profilePicture} alt="Thomas Bassetto outdoors in winter" widths={[320, 480, 640]} sizes="(max-width: 48rem) 11rem, 18rem" />
+			</figure>
+		</section>
+
+		<div class="facets">
+			<section id="engineering" class="facet engineering" aria-labelledby="engineering-title">
+				<header class="facet-intro">
+					<h2 id="engineering-title">Engineering at system scale.</h2>
+					<p>I’m a Principal Engineer at DNV, working where frontend architecture, design systems, developer experience and security culture meet.</p>
+					<div class="text-links">
+						<a class="text-link" href={LINKEDIN} target="_blank" rel="me noopener noreferrer">Career on LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+						<a class="text-link" href={GITHUB} target="_blank" rel="me noopener noreferrer">Code on GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+					</div>
+				</header>
+				<div class="practice-list" aria-label="Engineering focus areas">
+					<article>
+						<h3>Frontend architecture</h3>
+						<p>How interfaces are structured as products and teams grow.</p>
+					</article>
+					<article>
+						<h3>Design systems</h3>
+						<p>Shared foundations that connect design decisions and production code.</p>
+					</article>
+					<article>
+						<h3>Developer experience &amp; security</h3>
+						<p>Better defaults for everyday engineering work and safer decisions.</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="ocr" class="facet racing" aria-labelledby="racing-title">
+				<div class="racing-copy">
+					<h2 id="racing-title">Outside, preferably muddy.</h2>
+					<p>I train and race in obstacle course racing: running, strength, grip, endurance and the occasional bad decision in the mud.</p>
+					<p class="training-rhythm"><strong>Run.</strong> Lift. Hang on. Repeat.</p>
+					<a class="text-link" href={INSTAGRAM} target="_blank" rel="me noopener noreferrer">Race days on Instagram <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+				</div>
+				<PhotoGrid label="Obstacle course racing photo gallery" items={ocrPhotos} />
+			</section>
+
+			<section id="community" class="facet community" aria-labelledby="community-title">
+				<header class="community-intro">
+					<h2 id="community-title">France, Norway, and the work between.</h2>
+					<p>Public representation, technology and practical information for French-speaking people building a life in Norway.</p>
+				</header>
+				<div class="community-ledger">
+					<article>
+						<div>
+							<h3>Elected representative</h3>
+							<p>French citizens in Norway and Iceland · Since 2021</p>
+						</div>
+						<a class="text-link" href={PUBLIC_SERVICE} target="_blank" rel="me noopener noreferrer">Representation work <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+					</article>
+					<article>
+						<div>
+							<h3>La French Tech Oslo</h3>
+							<p>Board member</p>
+						</div>
+						<a class="text-link" href={FRENCH_TECH_OSLO} target="_blank" rel="me noopener noreferrer">Visit the community <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+					</article>
+					<article>
+						<div>
+							<h3>LaNorvege.no</h3>
+							<p>Co-author · French guide to moving to and living in Norway</p>
+						</div>
+						<a class="text-link" href={LANORVEGE} target="_blank" rel="me noopener noreferrer">Read the guide <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+					</article>
+				</div>
+			</section>
+		</div>
+
+		<section id="contact" class="contact">
+			<div>
+				<h2>Start a conversation.</h2>
+				<p>Engineering problems, speaking, French–Norwegian community projects, or a good race recommendation.</p>
+			</div>
+			<div class="contact-links">
+				<a class="button light" href={LINKEDIN} target="_blank" rel="me noopener noreferrer">
+					Message me on LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+				</a>
+				<a class="button contact-secondary" href={MASTODON} target="_blank" rel="me noopener noreferrer">
+					Follow on Mastodon <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+				</a>
+			</div>
+		</section>
 	</main>
-</Default>
+
+	<footer class="site-footer wrap">
+		<p>© {year} Thomas Bassetto</p>
+		<p>Oslo, Norway</p>
+	</footer>
+
+	<script>
+		const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('nav a[href^="#"]')];
+		const sections = sectionLinks
+			.map((link) => document.querySelector<HTMLElement>(link.hash))
+			.filter((section): section is HTMLElement => section !== null);
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((entry) => entry.isIntersecting)
+					.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+				if (!visible) return;
+
+				sectionLinks.forEach((link) => {
+					if (link.hash === `#${visible.target.id}`) link.setAttribute('aria-current', 'location');
+					else link.removeAttribute('aria-current');
+				});
+			},
+			{ rootMargin: '-20% 0px -55%', threshold: [0, 0.25, 0.6] },
+		);
+
+		sections.forEach((section) => observer.observe(section));
+	</script>
+</DefaultLayout>

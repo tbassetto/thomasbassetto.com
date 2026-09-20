@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	label: string;
+	items: Array<{
+		src: ImageMetadata;
+		alt: string;
+		caption: string;
+	}>;
+}
+
+const { label, items } = Astro.props;
+const captionId = `${label.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}-caption`;
+---
+
+<div class="photo-grid" aria-label={label}>
+	{
+		items.map((item) => (
+			<button
+				class="photo-item"
+				type="button"
+				data-photo-src={item.src.src}
+				data-photo-alt={item.alt}
+				data-photo-caption={item.caption}
+				aria-haspopup="dialog"
+			>
+				<Image class="photo-thumbnail" src={item.src} alt={item.alt} widths={[320, 640, 960]} sizes="(max-width: 48rem) 50vw, 25vw" loading="lazy" />
+				<span class="sr-only">Open larger view</span>
+			</button>
+		))
+	}
+</div>
+
+<dialog class="photo-lightbox" aria-label={label}>
+	<form method="dialog">
+		<button class="lightbox-close" value="close" aria-label="Close photo preview">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+				<path d="M6 6l12 12M18 6 6 18" />
+			</svg>
+		</button>
+	</form>
+	<img class="lightbox-image" data-lightbox-image alt="" />
+	<p id={captionId} class="lightbox-caption"></p>
+</dialog>
+
+<script>
+	document.querySelectorAll<HTMLElement>('.photo-grid').forEach((grid) => {
+		const dialog = grid.nextElementSibling;
+		if (!(dialog instanceof HTMLDialogElement)) return;
+
+		const caption = dialog.querySelector<HTMLElement>('.lightbox-caption');
+		const image = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]');
+		let trigger: HTMLButtonElement | null = null;
+
+		grid.querySelectorAll<HTMLButtonElement>('.photo-item').forEach((photo) => {
+			photo.addEventListener('click', () => {
+				trigger = photo;
+				if (image) {
+					image.src = photo.dataset.photoSrc ?? '';
+					image.alt = photo.dataset.photoAlt ?? '';
+				}
+				if (caption) caption.textContent = photo.dataset.photoCaption ?? '';
+				dialog.showModal();
+			});
+		});
+
+		dialog.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') {
+				event.preventDefault();
+				dialog.close();
+			}
+		});
+
+		dialog.addEventListener('cancel', (event) => {
+			event.preventDefault();
+			dialog.close();
+		});
+
+		dialog.addEventListener('close', () => trigger?.focus());
+
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	});
+</script>

@@ -1,13 +1,7 @@
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
-
-import tailwindcss from '@tailwindcss/vite';
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-	site: 'https://thomasbassetto.com',
-	integrations: [mdx(), sitemap()],
-	vite: {
-		plugins: [tailwindcss()],
-	},
+  site: "https://thomasbassetto.com",
+  integrations: [sitemap()],
 });
